@@ -2,6 +2,7 @@
 
 # manual update apt dependencies
 # https://dev.mysql.com/downloads/repo/apt/
+apt install curl
 curl https://repo.mysql.com//mysql-apt-config_0.8.22-1_all.deb --output ./mysqlApt.deb
 apt install ./mysqlApt.deb
 apt update
