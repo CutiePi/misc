@@ -7,8 +7,8 @@ apt install ./mysqlApt.deb
 apt update
 
 # update apt dependencies
-# use node 16 repo, default apt is v10
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+# use node 14 repo, default apt is v10
+curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 
 # install basic stuff via snap, commented optional items
 #snap install code --classic
@@ -38,4 +38,5 @@ echo 'notify-keyspace-events "AKE"' >> /etc/redis/redis.conf
 
 
 # configure stuff
+# TODO add what to pick
  mysql_secure_installation
