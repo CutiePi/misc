@@ -32,23 +32,12 @@ apt install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-
 npm install --global yarn
 
 
-
-
 # configs
 export NODE_ENV=development
-echo 'export NODE_ENV=development' >> ~/.bashrc
+echo 'export NODE_ENV=development' >> /etc/bash.bashrc
 echo 'notify-keyspace-events "AKE"' >> /etc/redis/redis.conf
-
-# generating your ssh key for git
-ssh-keygen -t ed25519
-ssh-keyscan github.com >> ~/.ssh/known_hosts
-ssh-add ~/.ssh/id_ed25519
 
 
 # configure stuff
 # user root password root and all defaults, refresh privileges
  mysql_secure_installation
- 
- 
- cat ~/.ssh/id_ed25519.pub
- echo "copy paste this into your github ssh keys"
