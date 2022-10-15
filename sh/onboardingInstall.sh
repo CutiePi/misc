@@ -44,4 +44,4 @@ echo 'notify-keyspace-events "AKE"' >> /etc/redis/redis.conf
 
 # configure stuff
 # user root password root and all defaults, refresh privileges
- mysql_secure_installation
+# mysql_secure_installation (no longer needed, root has no password by default)
