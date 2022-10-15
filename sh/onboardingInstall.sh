@@ -1,5 +1,8 @@
 #!/bin/bash 
 
+# make sure apt is up to date first.
+apt update -y
+apt upgrade -y
 # manual update apt dependencies
 # https://dev.mysql.com/downloads/repo/apt/
 apt install curl -y
