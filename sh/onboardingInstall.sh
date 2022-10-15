@@ -6,9 +6,10 @@ apt upgrade -y
 # manual update apt dependencies
 # https://dev.mysql.com/downloads/repo/apt/
 apt install curl -y
-curl https://repo.mysql.com//mysql-apt-config_0.8.22-1_all.deb --output ./mysqlApt.deb
-apt install ./mysqlApt.deb
-apt update -y
+#curl https://repo.mysql.com//mysql-apt-config_0.8.22-1_all.deb --output ./mysqlApt.deb
+#apt install ./mysqlApt.deb
+#apt update -y
+apt install mysql-server-8.0
 
 # update apt dependencies
 # use node 14 repo, default apt is v10
