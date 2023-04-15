@@ -1,7 +1,7 @@
 #!/bin/bash 
 
-# install homebrew only part that needs sudo
-# sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# install homebrew, before running script
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install mysql
 brew install mysql-client
 brew install --cask mysqlworkbench
@@ -21,10 +21,10 @@ brew install pkg-config cairo pango libpng jpeg giflib librsvg python
 
 # install n node version manager
 brew install n
-# use n to install proper version of node
-n 18.14
-# install via npm, after nodejs
-npm install --global yarn
+# use n to install proper version of node, needs sudo
+sudo n 18.14
+# install via npm, after nodejs, needs sudo
+sudo npm install --global yarn
 
 
 
@@ -50,4 +50,5 @@ echo 'notify-keyspace-events "AKE"' >> /opt/homebrew/etc/redis.conf
 # user root password root and all defaults, refresh privileges
 brew services start redis
 brew services start mysql
+# user root password root
 mysql_secure_installation
