@@ -8,6 +8,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # basic stuff
 brew install git
+brew install --cask rectangle
+brew install --cask stats
+brew install --cask scroll-reverser
 #brew install n
 
 
