@@ -41,7 +41,11 @@ echo ""
 
 echo "Starting Samba server configuration and fstab setup..."
 
-# Replace "YOUR_DRIVE_UUID" with the UUID you copied in Step 1.
+# Replace "YOUR_DRIVE_UUID" with the UUID you can get via
+# sudo blkid
+# This will output a list of all your system's block devices. Look for your external hard drive's partition. It will look something like this:
+# /dev/sda1: LABEL="MyMediaDrive" UUID="1234-ABCD" TYPE="ext4" PARTUUID="..."
+# Find the line that corresponds to your external hard drive and copy its UUID.
 DRIVE_UUID="YOUR_DRIVE_UUID"
 FILESYSTEM_TYPE="ntfs"
 MOUNT_POINT="/mnt/externalMedia"
