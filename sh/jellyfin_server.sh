@@ -37,17 +37,24 @@ echo "Remember to change the font in Kitty's config to a Nerd Font (e.g., 'JetBr
 echo "Most likely in ~/.config/kitty/kitty.conf"
 echo ""
 
-# --- Section 2: Install and configure Samba Server ---
+# --- Section 2: Install and configure Samba Server and Fstab ---
 
-echo "Starting Samba server configuration..."
+echo "Starting Samba server configuration and fstab setup..."
+
+# Replace "YOUR_DRIVE_UUID" with the UUID you copied in Step 1.
+DRIVE_UUID="YOUR_DRIVE_UUID"
+FILESYSTEM_TYPE="ntfs"
+MOUNT_POINT="/mnt/externalMedia"
 
 # Install Samba
+sudo apt update
 sudo apt install -y samba
 
 # Create the directory for the share if it doesn't exist.
-# This is a common location for external drives.
-sudo mkdir -p /mnt/externalMedia
-sudo chown -R $USER:$USER /mnt/externalMedia
+sudo mkdir -p "$MOUNT_POINT"
+
+# Take ownership of the mount point so your user can manage files.
+sudo chown -R $USER:$USER "$MOUNT_POINT"
 
 # Backup the original smb.conf file
 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
@@ -57,18 +64,28 @@ echo "Configuring a public share..."
 sudo bash -c 'cat << EOF >> /etc/samba/smb.conf
 [externalMedia]
    comment = Media Share
-   path = /mnt/externalMedia
+   path = '$MOUNT_POINT'
    browseable = yes
    read only = no
    guest ok = yes
    force user = '$USER'
 EOF'
 
+# Add an fstab entry to ensure the drive always mounts to the correct location
+echo "Adding an fstab entry for persistent mounting..."
+# The 'nofail' option ensures the system boots even if the drive isn't plugged in.
+# 'defaults' is a good starting point for options.
+sudo bash -c 'echo "UUID='$DRIVE_UUID' '$MOUNT_POINT' '$FILESYSTEM_TYPE' defaults,nofail 0 0" >> /etc/fstab'
+
 # Restart the Samba service to apply the changes
 sudo systemctl restart smbd nmbd
 
-echo "Samba server installed and configured for the /mnt/externalMedia share."
-echo "You can now access this share from other computers on your network."
+# Attempt to mount the drive using the new fstab entry
+echo "Attempting to mount the drive..."
+sudo mount -a
+
+echo "Samba server configured and fstab entry added for the /mnt/externalMedia share."
+echo "Your external drive should now automatically mount to this location on reboot."
 echo ""
 
 # 3 install jellyfin server
